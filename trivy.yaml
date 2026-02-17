@@ -1,24 +1,21 @@
-# Trivy設定ファイル
-# ローカル実行: trivy fs --config trivy.yaml .
+debug: false
+insecure: false
+timeout: 5m0s
+exit-code: 1
 
 severity:
   - CRITICAL
   - HIGH
 
-# 修正版がない脆弱性は無視
-ignore-unfixed: true
+scan:
+  scanners:
+    - vuln
+    - secret
+    - misconfiguration
 
-# 出力フォーマット
-format: table
-
-# 脆弱性が見つかった場合の終了コード
-exit-code: 1
-
-# スキャン対象
-scanners:
-  - vuln
-  - secret
-  - misconfig
-
-# キャッシュディレクトリ
-cache-dir: .trivy-cache
+  skip-files:
+    - GTAGS
+    - tags
+cache:
+  dir:
+    - ".trivy-cache/"
