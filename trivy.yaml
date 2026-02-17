@@ -1,3 +1,12 @@
+debug: false
+insecure: false
+timeout: 5m0s
+exit-code: 1
+
+severity:
+  - CRITICAL
+  - HIGH
+
 scan:
   scanners:
     - vuln
@@ -7,4 +16,6 @@ scan:
   skip-files:
     - GTAGS
     - tags
-
+cache:
+  dir:
+    - ".trivy-cache/"
